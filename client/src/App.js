@@ -4,7 +4,6 @@ import Saved from "./pages/Saved/Saved";
 import Book from "./pages/Book/Book";
 import NotFound from "./pages/NotFound/NotFound";
 import Footer from "./components/Footer/Footer";
-import Container from "./components/Container/Container";
 import Navbar from "./components/Navbar/Navbar";
 
 function App() {

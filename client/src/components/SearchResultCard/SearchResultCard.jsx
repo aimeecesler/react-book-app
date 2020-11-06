@@ -1,40 +1,34 @@
 import React from "react";
-import logo from "../../images/BookBadger.png";
 
 const SearchResultCard = ({ book }) => {
-  const details = book.volumeInfo;
   const saveBook = function (book) {
-      console.log(book)
+    console.log(book);
   };
 
   return (
     <div className="col-sm-12">
       <div className="card mb-3">
-        <div className="row no-gutters">
-          <div className="col-md-4">
+        <div className="row">
+          <div className="col-md-2">
             <img
-              src={details.imageLinks.smallThumbnail}
+              src={book.imageLinks.thumbnail}
               className="card-img"
-              alt={details.title}
+              alt={book.title}
             />
           </div>
-          <div className="col-md-8">
+          <div className="col-md-10">
             <div className="card-body text-center">
-              <h5 className="card-title">{details.title}</h5>
+              <h5 className="card-title">{book.title}</h5>
               <h6 className="card-text">
-                Author(s): {details.authors.join(", ")}
+                Author(s): {book.authors.join(", ")}
               </h6>
-              <p className="card-text">{details.description}</p>
-              <a
-                href={details.infoLink}
-                class="btn btn-info mr-1"
-                role="button"
-              >
+              <p className="card-text">{book.description}</p>
+              <a href={book.infoLink} class="btn btn-info mr-1" role="button">
                 More Info
               </a>
               <button
                 className="btn btn-info ml-1"
-                onClick={() => saveBook(details)}
+                onClick={() => saveBook(book)}
               >
                 Save Book
               </button>

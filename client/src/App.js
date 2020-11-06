@@ -12,14 +12,12 @@ function App() {
     <Router>
       <div className="d-flex flex-column min-vh-100">
         <Navbar />
-        <Container>
-          <Switch>
-            <Route exact path="/" component={Search} />
-            <Route exact path="/books" component={Saved} />
-            <Route exact path="/book/bookId" component={Book} />
-            <Route path="/" component={NotFound} />
-          </Switch>
-        </Container>
+        <Switch>
+          <Route exact path="/" component={Search} />
+          <Route exact path="/books" component={Saved} />
+          <Route exact path="/book/bookId" component={Book} />
+          <Route path="/" component={NotFound} />
+        </Switch>
         <Footer />
       </div>
     </Router>

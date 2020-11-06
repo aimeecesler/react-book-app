@@ -1,11 +1,13 @@
-import React from 'react';
+import React from "react";
+import ContainerFluid from "../../components/ContainerFluid/ContainerFluid";
+import LogoHeader from "../../components/LogoHeader/LogoHeader";
 
 const Search = () => {
-    return (
-        <div>
-            <h1>SEARCH PAGE</h1>
-        </div>
-    );
+  return (
+    <ContainerFluid>
+      <LogoHeader />
+    </ContainerFluid>
+  );
 };
 
 export default Search;

@@ -5,11 +5,13 @@ import Book from "./pages/Book/Book";
 import NotFound from "./pages/NotFound/NotFound";
 import Footer from "./components/Footer/Footer";
 import Container from "./components/Container/Container";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   return (
-      <Router>
-      <div className="d-flex flex-column min-vh-100" >
+    <Router>
+      <div className="d-flex flex-column min-vh-100">
+        <Navbar />
         <Container>
           <Switch>
             <Route exact path="/" component={Search} />
@@ -19,8 +21,8 @@ function App() {
           </Switch>
         </Container>
         <Footer />
-        </div>
-      </Router>
+      </div>
+    </Router>
   );
 }
 

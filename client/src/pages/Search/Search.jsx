@@ -4,10 +4,12 @@ import ContainerFluid from "../../components/ContainerFluid/ContainerFluid";
 import LogoHeader from "../../components/LogoHeader/LogoHeader";
 import Row from "../../components/Row/Row";
 import axios from "axios";
+import SearchResultCard from "../../components/SearchResultCard/SearchResultCard";
 
 const Search = () => {
   const [searchCategory, setSearchCategory] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
   const handleSearch = function (event) {
     event.preventDefault();
     if (searchCategory === "title") {
@@ -23,7 +25,7 @@ const Search = () => {
         `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&key=AIzaSyAglOANk2Yac7WdENqzlNS2UeiGXECtvVk`
       )
       .then((res) => {
-        console.log(res.data);
+        setSearchResults(res.data.items);
       })
       .catch((err) => console.log(err));
   };
@@ -34,7 +36,7 @@ const Search = () => {
         `https://www.googleapis.com/books/v1/volumes?q=inauthor:${searchQuery}&key=AIzaSyAglOANk2Yac7WdENqzlNS2UeiGXECtvVk`
       )
       .then((res) => {
-        console.log(res.data);
+        setSearchResults(res.data.items);
       })
       .catch((err) => console.log(err));
   };
@@ -80,6 +82,11 @@ const Search = () => {
               </button>
             </form>
           </div>
+        </Row>
+        <Row>
+          {searchResults.map((book, index) => (
+            <SearchResultCard book={book} key={index}/>
+          ))}
         </Row>
       </Container>
     </>

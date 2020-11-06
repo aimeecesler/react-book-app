@@ -25,6 +25,7 @@ const Search = () => {
         `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&key=AIzaSyAglOANk2Yac7WdENqzlNS2UeiGXECtvVk`
       )
       .then((res) => {
+        console.log(res.data.items);
         setSearchResults(res.data.items);
       })
       .catch((err) => console.log(err));
@@ -85,7 +86,7 @@ const Search = () => {
         </Row>
         <Row>
           {searchResults.map((book, index) => (
-            <SearchResultCard book={book} key={index}/>
+            <SearchResultCard book={book} key={index} />
           ))}
         </Row>
       </Container>

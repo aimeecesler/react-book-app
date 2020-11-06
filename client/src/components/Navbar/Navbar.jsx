@@ -1,10 +1,11 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import "./Navbar.css";
 
 const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-info">
-      <Link to="/" className="navbar-brand">
+      <Link to="/" className="navbar-brand navbar-font">
         Book Badger
       </Link>
       <button

@@ -3,14 +3,42 @@ import Container from "../../components/Container/Container";
 import ContainerFluid from "../../components/ContainerFluid/ContainerFluid";
 import LogoHeader from "../../components/LogoHeader/LogoHeader";
 import Row from "../../components/Row/Row";
+import axios from "axios";
 
 const Search = () => {
   const [searchCategory, setSearchCategory] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const handleSearch = function (event) {
     event.preventDefault();
-    console.log(searchQuery, searchCategory);
+    if (searchCategory === "title") {
+      searchByTitle();
+    } else if (searchCategory === "author") {
+      searchByAuthor();
+    }
   };
+
+  const searchByTitle = function () {
+    axios
+      .get(
+        `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&key=AIzaSyAglOANk2Yac7WdENqzlNS2UeiGXECtvVk`
+      )
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const searchByAuthor = function () {
+    axios
+      .get(
+        `https://www.googleapis.com/books/v1/volumes?q=inauthor:${searchQuery}&key=AIzaSyAglOANk2Yac7WdENqzlNS2UeiGXECtvVk`
+      )
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <>
       <ContainerFluid>
@@ -30,7 +58,9 @@ const Search = () => {
                   value={searchCategory}
                   onChange={(e) => setSearchCategory(e.target.value)}
                 >
-                  <option value="" className="disabled">Select a Category</option>
+                  <option value="" className="disabled">
+                    Select a Category
+                  </option>
                   <option value="title">Title</option>
                   <option value="author">Author</option>
                 </select>

@@ -3,6 +3,9 @@ import logo from "../../images/BookBadger.png";
 
 const SearchResultCard = ({ book }) => {
   const details = book.volumeInfo;
+  const saveBook = function (book) {
+      console.log(book)
+  };
 
   return (
     <div className="col-sm-12">
@@ -29,6 +32,12 @@ const SearchResultCard = ({ book }) => {
               >
                 More Info
               </a>
+              <button
+                className="btn btn-info ml-1"
+                onClick={() => saveBook(details)}
+              >
+                Save Book
+              </button>
             </div>
           </div>
         </div>

@@ -30,6 +30,7 @@ const Search = () => {
           "You must choose a category and enter a search term in order to search.",
       });
     } else if (searchCategory === "title") {
+      console.log(searchQuery);
       searchByTitle();
       setAlertMessage({
         class: "",

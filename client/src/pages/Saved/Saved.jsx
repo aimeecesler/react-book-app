@@ -52,7 +52,7 @@ const Saved = () => {
           {books.length ? (
             books.map((book, index) => <SavedBookCard {...book} key={index} deleteBook={deleteBook} />)
           ) : (
-            <NoBooksCard message="No Saved Books"/>
+            <NoBooksCard message="No Saved Books" className="card mb-3"/>
           )}
         </Row>
       </Container>

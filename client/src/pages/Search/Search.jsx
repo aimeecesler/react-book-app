@@ -102,7 +102,7 @@ const Search = () => {
               <SearchResultCard book={book.volumeInfo} key={index} />
             ))
           ) : (
-            <NoBooksCard message="Your search did not match any books." display={messageDisplay}/>
+            <NoBooksCard message="Your search did not match any books." className={messageDisplay}/>
           )}
         </Row>
       </Container>

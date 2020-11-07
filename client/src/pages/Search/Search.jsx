@@ -25,7 +25,8 @@ const Search = () => {
       setAlertMessage({
         class: "alert alert-danger",
         style: "block",
-        message: "You must choose a category and enter a search term in order to search.",
+        message:
+          "You must choose a category and enter a search term in order to search.",
       });
       console.log(alertMessage);
     } else if (searchCategory === "title") {
@@ -43,6 +44,19 @@ const Search = () => {
         message: "",
       });
     }
+  };
+
+  const handleReset = function () {
+    setSearchCategory("");
+    setSearchQuery("");
+    setSearchResults([]);
+    setMessageDisplay("card mb-3 hide");
+    setAlertMessage({
+      class: "",
+      style: "",
+      message: "",
+    });
+    document.getElementById("search-form").reset();
   };
 
   const searchByTitle = function () {
@@ -87,8 +101,12 @@ const Search = () => {
         <Row>
           <div className="col-sm-2"></div>
           <div className="col-sm-8">
-            <form className="bg-light p-4 my-4" onSubmit={handleSearch}>
-              <h3>Search Books:</h3>
+            <form
+              id="search-form"
+              className="bg-light p-4 my-4 text-center"
+              onSubmit={handleSearch}
+            >
+              <h3 className="text-left">Search Books:</h3>
               <div className="form-group">
                 <select
                   className="form-control"
@@ -114,8 +132,15 @@ const Search = () => {
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
-              <button type="submit" className="btn btn-info">
+              <button type="submit" className="btn btn-info mr-1">
                 Submit
+              </button>
+              <button
+                type="button"
+                className="btn btn-warning ml-1"
+                onClick={handleReset}
+              >
+                Clear Results
               </button>
             </form>
             <Alert {...alertMessage} />

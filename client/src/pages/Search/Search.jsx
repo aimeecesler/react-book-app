@@ -97,11 +97,11 @@ const Search = () => {
     e.preventDefault();
     axios
       .post("/api/books", {
-        title: book.title,
-        authors: book.authors,
-        description: book.description,
-        image: book.imageLinks.thumbnail,
-        link: book.infoLink,
+        title: book.title ? book.title : "No Title",
+        authors: book.authors ? book.authors : [],
+        description: book.description ? book.description : "",
+        image: book.imageLinks ? book.imageLinks.thumbnail : "https://upload.wikimedia.org/wikipedia/commons/7/72/Placeholder_book.svg",
+        link: book.infoLink ? book.infoLink : "https://google.com",
       })
       .then((response) => {
         console.log(response.data);

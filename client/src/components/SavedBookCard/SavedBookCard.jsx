@@ -7,7 +7,7 @@ const SavedBookCard = ({ _id, title, authors, description, image, link, deleteBo
       <div className="card mb-3">
         <div className="row">
           <div className="col-md-2">
-            <img src={image} className="card-img" alt={title} />
+            <img src={image} className="card-img p-3" alt={title} />
           </div>
           <div className="col-md-10">
             <div className="card-body text-center">

@@ -7,9 +7,7 @@ const NoBooksCard = (props) => {
       <div className={props.className}>
         <div className="col-md-12">
           <div className="card-body text-center">
-            <h5 className="card-title">
-              {props.message}
-            </h5>
+            <h5 className="card-title">{props.message}</h5>
           </div>
         </div>
       </div>

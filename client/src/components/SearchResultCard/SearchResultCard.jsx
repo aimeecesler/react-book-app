@@ -23,7 +23,7 @@ const SearchResultCard = ({ book }) => {
           <div className="col-md-2">
             <img
               src={book.imageLinks.thumbnail}
-              className="card-img"
+              className="card-img p-3"
               alt={book.title}
             />
           </div>

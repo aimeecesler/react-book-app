@@ -5,6 +5,7 @@ import LogoHeader from "../../components/LogoHeader/LogoHeader";
 import Row from "../../components/Row/Row";
 import axios from "axios";
 import SavedBookCard from "../../components/SavedBookCard/SavedBookCard";
+import NoBooksCard from "../../components/NoBooksCard/NoBooksCard";
 
 const Saved = () => {
   const [books, setBooks] = useState([]);
@@ -33,9 +34,11 @@ const Saved = () => {
           </div>
         </Row>
         <Row>
-          {books.map((book) => (
-              <SavedBookCard {...book} />
-            ))}
+          {books.length ? (
+            books.map((book) => <SavedBookCard {...book} />)
+          ) : (
+            <NoBooksCard />
+          )}
         </Row>
       </Container>
     </>

@@ -1,8 +1,19 @@
+import axios from "axios";
 import React from "react";
 
 const SearchResultCard = ({ book }) => {
-  const saveBook = function (book) {
-    console.log(book);
+  const saveBook = function (e, book) {
+    e.preventDefault();
+    axios
+      .post("/api/books", {
+        title: book.title,
+        authors: book.authors,
+        description: book.description,
+        image: book.imageLinks.thumbnail,
+        link: book.infoLink,
+      })
+      .then((response) => console.log(response.data))
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -23,12 +34,12 @@ const SearchResultCard = ({ book }) => {
                 Author(s): {book.authors.join(", ")}
               </h6>
               <p className="card-text">{book.description}</p>
-              <a href={book.infoLink} class="btn btn-info mr-1" role="button">
+              <a href={book.infoLink} className="btn btn-info mr-1" role="button">
                 More Info
               </a>
               <button
                 className="btn btn-info ml-1"
-                onClick={() => saveBook(book)}
+                onClick={(e) => saveBook(e, book)}
               >
                 Save Book
               </button>

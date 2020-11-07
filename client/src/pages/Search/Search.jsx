@@ -7,6 +7,7 @@ import axios from "axios";
 import SearchResultCard from "../../components/SearchResultCard/SearchResultCard";
 import NoBooksCard from "../../components/NoBooksCard/NoBooksCard";
 import Alert from "../../components/Alert/Alert";
+import SaveModal from "../../components/SaveModal/SaveModal";
 
 const Search = () => {
   const [searchCategory, setSearchCategory] = useState("");
@@ -18,6 +19,7 @@ const Search = () => {
     style: "",
     message: "",
   });
+  const [showModal, setShowModal] = useState(false);
   const handleSearch = function (event) {
     event.preventDefault();
     if (searchCategory === "" || searchQuery === "") {
@@ -90,6 +92,27 @@ const Search = () => {
       .catch((err) => console.log(err));
   };
 
+  const saveBook = function (e, book) {
+    e.preventDefault();
+    axios
+      .post("/api/books", {
+        title: book.title,
+        authors: book.authors,
+        description: book.description,
+        image: book.imageLinks.thumbnail,
+        link: book.infoLink,
+      })
+      .then((response) => {
+        console.log(response.data);
+        toggleModal();
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
+
   return (
     <>
       <ContainerFluid>
@@ -147,7 +170,11 @@ const Search = () => {
         <Row>
           {searchResults.length ? (
             searchResults.map((book, index) => (
-              <SearchResultCard book={book.volumeInfo} key={index} />
+              <SearchResultCard
+                book={book.volumeInfo}
+                key={index}
+                saveBook={saveBook}
+              />
             ))
           ) : (
             <NoBooksCard
@@ -157,6 +184,7 @@ const Search = () => {
           )}
         </Row>
       </Container>
+      <SaveModal showModal={showModal} toggleModal={toggleModal} />
     </>
   );
 };

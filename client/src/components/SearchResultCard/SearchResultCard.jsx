@@ -1,20 +1,6 @@
-import axios from "axios";
 import React from "react";
 
-const SearchResultCard = ({ book }) => {
-  const saveBook = function (e, book) {
-    e.preventDefault();
-    axios
-      .post("/api/books", {
-        title: book.title,
-        authors: book.authors,
-        description: book.description,
-        image: book.imageLinks.thumbnail,
-        link: book.infoLink,
-      })
-      .then((response) => console.log(response.data))
-      .catch((err) => console.log(err));
-  };
+const SearchResultCard = ({ book, saveBook }) => {
 
   return (
     <div className="col-sm-12">

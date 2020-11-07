@@ -1,7 +1,19 @@
 .logo-bg {
-    background-color: blanchedalmond;
+  background-color: blanchedalmond;
 }
 
 .logo {
-    max-height: 400px;
+  max-height: 400px;
+}
+
+@media only screen and (max-width: 600px) {
+    .logo {
+      max-height: 300px;
+    }
+  }
+
+@media only screen and (max-width: 400px) {
+  .logo {
+    max-height: 250px;
+  }
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import "./SavedBookCard.css";
 
 const SavedBookCard = ({ _id, title, authors, description, image, link, deleteBook }) => {
 
@@ -6,8 +7,8 @@ const SavedBookCard = ({ _id, title, authors, description, image, link, deleteBo
     <div className="col-sm-12 text-center">
       <div className="card mb-3">
         <div className="row">
-          <div className="col-md-2">
-            <img src={image} className="card-img p-3" alt={title} />
+          <div className="col-md-2 text-center">
+            <img src={image} className="card-img p-3 saved-image" alt={title} />
           </div>
           <div className="col-md-10">
             <div className="card-body text-center">

@@ -11,16 +11,31 @@ const Saved = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
+    getBooks();
+  }, []);
+
+  const getBooks = function () {
     axios
       .get("/api/books")
       .then((response) => {
-        console.log(response);
         setBooks(response.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  };
+
+  const deleteBook = function (_id) {
+    axios
+      .delete(`/api/books/${_id}`)
+      .then((response) => {
+        console.log(response.data);
+        getBooks();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <>
@@ -35,7 +50,7 @@ const Saved = () => {
         </Row>
         <Row>
           {books.length ? (
-            books.map((book) => <SavedBookCard {...book} />)
+            books.map((book, index) => <SavedBookCard {...book} key={index} deleteBook={deleteBook} />)
           ) : (
             <NoBooksCard />
           )}

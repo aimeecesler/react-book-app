@@ -1,17 +1,6 @@
 import React from "react";
 
-const SavedBookCard = ({ _id, title, authors, description, image, link }) => {
-  const deleteBook = function (
-    e,
-    _id,
-    title,
-    authors,
-    description,
-    image,
-    link
-  ) {
-    console.log("Delete book with id: " + _id);
-  };
+const SavedBookCard = ({ _id, title, authors, description, image, link, deleteBook }) => {
 
   return (
     <div className="col-sm-12 text-center">
@@ -30,9 +19,7 @@ const SavedBookCard = ({ _id, title, authors, description, image, link }) => {
               </a>
               <button
                 className="btn btn-info ml-1"
-                onClick={(e) =>
-                  deleteBook(e, _id, title, authors, description, image, link)
-                }
+                onClick={() => deleteBook(_id)}
               >
                 Delete
               </button>

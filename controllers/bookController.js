@@ -25,7 +25,31 @@ router.post("/", (req, res) => {
     image: req.body.image,
     link: req.body.link,
   };
-  db.Book.create(newBook).then((newBook) => res.json(newBook));
+  db.Book.create(newBook)
+    .then((newBook) => res.json(newBook))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        error: true,
+        data: null,
+        message: "Failed to add new book.",
+      });
+    });
+});
+
+router.delete("/:id", (req, res) => {
+  db.Book.findByIdAndDelete(req.params.id)
+    .then((deletedBook) => {
+      res.json(deletedBook);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        error: true,
+        data: null,
+        message: "Failed to delete book.",
+      });
+    });
 });
 
 module.exports = router;

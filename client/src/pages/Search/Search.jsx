@@ -5,11 +5,13 @@ import LogoHeader from "../../components/LogoHeader/LogoHeader";
 import Row from "../../components/Row/Row";
 import axios from "axios";
 import SearchResultCard from "../../components/SearchResultCard/SearchResultCard";
+import NoBooksCard from "../../components/NoBooksCard/NoBooksCard";
 
 const Search = () => {
   const [searchCategory, setSearchCategory] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [messageDisplay, setMessageDisplay] = useState("card mb-3 hide");
   const handleSearch = function (event) {
     event.preventDefault();
     if (searchCategory === "title") {
@@ -22,10 +24,16 @@ const Search = () => {
   const searchByTitle = function () {
     axios
       .get(
-        `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&key=AIzaSyAglOANk2Yac7WdENqzlNS2UeiGXECtvVk`
+        `https://www.googleapis.com/books/v1/volumes?q=intitle:${searchQuery}&key=AIzaSyAglOANk2Yac7WdENqzlNS2UeiGXECtvVk`
       )
       .then((res) => {
-        setSearchResults(res.data.items);
+        console.log(res);
+        if (res.data.totalItems === 0){
+          setSearchResults([]);
+          setMessageDisplay("card mb-3 show");
+        } else {
+          setSearchResults(res.data.items);
+        }
       })
       .catch((err) => console.log(err));
   };
@@ -36,7 +44,12 @@ const Search = () => {
         `https://www.googleapis.com/books/v1/volumes?q=inauthor:${searchQuery}&key=AIzaSyAglOANk2Yac7WdENqzlNS2UeiGXECtvVk`
       )
       .then((res) => {
-        setSearchResults(res.data.items);
+        if (res.data.totalItems === 0){
+          setSearchResults([]);
+          setMessageDisplay("card mb-3 show");
+        } else {
+          setSearchResults(res.data.items);
+        }
       })
       .catch((err) => console.log(err));
   };
@@ -84,9 +97,13 @@ const Search = () => {
           </div>
         </Row>
         <Row>
-          {searchResults.map((book, index) => (
-            <SearchResultCard book={book.volumeInfo} key={index} />
-          ))}
+          {searchResults.length ? (
+            searchResults.map((book, index) => (
+              <SearchResultCard book={book.volumeInfo} key={index} />
+            ))
+          ) : (
+            <NoBooksCard message="Your search did not match any books." display={messageDisplay}/>
+          )}
         </Row>
       </Container>
     </>

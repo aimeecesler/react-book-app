@@ -34,7 +34,7 @@ const SearchResultCard = ({ book }) => {
                 Author(s): {book.authors.join(", ")}
               </h6>
               <p className="card-text">{book.description}</p>
-              <a href={book.infoLink} className="btn btn-info mr-1" role="button">
+              <a href={book.infoLink} className="btn btn-info mr-1" role="button" target="blank">
                 More Info
               </a>
               <button

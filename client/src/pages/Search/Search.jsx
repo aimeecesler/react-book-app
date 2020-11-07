@@ -20,7 +20,6 @@ const Search = () => {
   });
   const handleSearch = function (event) {
     event.preventDefault();
-    console.log(searchCategory);
     if (searchCategory === "" || searchQuery === "") {
       setAlertMessage({
         class: "alert alert-danger",
@@ -28,7 +27,6 @@ const Search = () => {
         message:
           "You must choose a category and enter a search term in order to search.",
       });
-      console.log(alertMessage);
     } else if (searchCategory === "title") {
       searchByTitle();
       setAlertMessage({

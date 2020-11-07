@@ -30,7 +30,6 @@ const Search = () => {
           "You must choose a category and enter a search term in order to search.",
       });
     } else if (searchCategory === "title") {
-      console.log(searchQuery);
       searchByTitle();
       setAlertMessage({
         class: "",
@@ -66,7 +65,6 @@ const Search = () => {
         `https://www.googleapis.com/books/v1/volumes?q=intitle:${searchQuery}&key=AIzaSyAglOANk2Yac7WdENqzlNS2UeiGXECtvVk`
       )
       .then((res) => {
-        console.log(res);
         if (res.data.totalItems === 0) {
           setSearchResults([]);
           setMessageDisplay("card mb-3 show");
